@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth Table Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="lhs">
+            <h1>⚡ Truth Table Generator</h1>
+            <form method="post" action="{{url_for('home')}}">
+                <input type="text" name="expression" placeholder="Enter Boolean Expression (e.g., A & B | C)" required>
+                <input type="submit" value="Generate">
+            </form>
+            <div class="info">
+                <p>AND(&), OR(|), NOT(~), XOR(^)</p>
+                <p>Created by <strong>Codezy93</strong></p>
+                <div class="vars">
+                    <span><a href="https://github.com/Codezy93" target="_blank"><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/48/github.png" alt="github"/></a></span>
+                    <span><a href="https://www.linkedin.com/in/viraj-paradkar/" target="_blank"><img width="30" height="30" src="https://img.icons8.com/fluency/48/linkedin.png" alt="linkedin"/></a></span>
+                    <span><a href="https://x.com/Codezy93" target="_blank"><img width="30" height="30" src="https://img.icons8.com/ios-filled/48/twitterx--v1.png" alt="twitterx--v1"/></a></span>
+                </div>
+            </div>
+        </div>
+        <div class="rhs">
+            {% if table != 0 %}
+            <table>
+                <thead>
+                    <tr>
+                        {% for i in elements %}
+                            <th>{{i}}</th>
+                        {% endfor %}
+                        <th>Q</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Results will be dynamically added here via server-side logic -->
+                    {% for i in result %}
+                    <tr>
+                        {% for j in i %}
+                            <td>{{ j }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
